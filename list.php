@@ -1,15 +1,19 @@
 <?php
   $include_css = $include_js = $content = $talentList = '';
 
-  $con = new mysqli('localhost','agencyusr','agencyusr','agency');
+  $con = new mysqli('localhost','root','root','agencydb');
 
   $query = "SELECT * FROM talent";
   $result = $con->query($query);
   while ($r = $result->fetch_assoc()) {
       $talentList .= '
         <tr>
-          <td>'.$r['id_talent'].'</td>
-          <td>'.$r['talent_name'].'</td>
+          <td>'.$r['id'].'</td>
+          <td>'.$r['name'].'</td>
+          <td>'.$r['gender'].'</td>
+          <td>'.$r['email'].'</td>
+          <td>'.$r['address'].'</td>
+          <td>'.$r['height'].'</td>
         </tr>';
   }
 ?>

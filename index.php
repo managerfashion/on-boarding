@@ -4,7 +4,7 @@
   if(isset($_POST['name'])){
     $con = new mysqli('localhost','agencyusr','agencyusr','agency');
 
-    $query = "INSERT INTO talent(talent_name) VALUES('{$_POST['name']}')";
+    $query = "INSERT INTO talent() VALUES()";
     $con->query($query);
     echo $con->error;
   }
