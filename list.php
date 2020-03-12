@@ -1,22 +1,20 @@
 <?php
   $include_css = $include_js = $content = $talentList = '';
 
-  $con = new mysqli('localhost','root','root','agencydb');
+  require_once 'global.php';
 
-  $query = "SELECT * FROM talent";
-  $result = $con->query($query);
-  while ($r = $result->fetch_assoc()) {
-      $talentList .= '
-        <tr>
-          <td>'.$r['id'].'</td>
-          <td>'.$r['name'].'</td>
-          <td>'.$r['gender'].'</td>
-          <td>'.$r['email'].'</td>
-          <td>'.$r['address'].'</td>
-          <td>'.$r['height'].'</td>
-        </tr>';
-  }
 ?>
+
+<?php
+try{
+  $talent = new Talent();
+  $list = $talent->listAll();
+} catch(Exception $e) {
+  Error::catchError($e);
+}
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -108,12 +106,23 @@
                       <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Height</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php 
-                        echo $talentList;
-                      ?>
+                    <?php foreach ($list as $line): ?>
+                    <tr>
+                        <td>  <?php echo $line['id'] ?>       </td>
+                        <td>  <?php echo $line['name'] ?>     </td>
+                        <td>  <?php echo $line['gender'] ?>   </td>
+                        <td>  <?php echo $line['email'] ?>    </td>
+                        <td>  <?php echo $line['address'] ?>  </td>
+                        <td>  <?php echo $line['height'] ?>   </td>
+                    </tr>
+                <?php endforeach ?>
                     </tbody>
                   </table>
               </div>

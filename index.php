@@ -1,14 +1,10 @@
 <?php
   $include_css = $include_js = $content = '';
 
-  if(isset($_POST['name'])){
-    $con = new mysqli('localhost','agencyusr','agencyusr','agency');
+  require_once 'global.php';
 
-    $query = "INSERT INTO talent() VALUES()";
-    $con->query($query);
-    echo $con->error;
-  }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -96,12 +92,40 @@
                   </h4>
               </div>
               <div class="panel-body">
-                  <form class="form-horizontal" method="POST" action="index.php">
+                  <form class="form-horizontal" method="POST" action="talent-create-post.php">
 
                       <div class="form-group">
                         <label for="name" class="col-lg-2 control-label">Name</label>
                         <div class="col-lg-10">
                           <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="gender" class="col-lg-2 control-label">Gender</label>
+                        <div class="col-lg-10">
+                          <input type="text" class="form-control" name="gender" id="gender" placeholder="Male / Female">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="email" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                          <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="address" class="col-lg-2 control-label">Address</label>
+                        <div class="col-lg-10">
+                          <input type="text" class="form-control" name="address" id="address" placeholder="Address">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="height" class="col-lg-2 control-label">Height</label>
+                        <div class="col-lg-10">
+                          <input type="number" class="form-control" name="height" id="height" placeholder="Height">
                         </div>
                       </div>
 
