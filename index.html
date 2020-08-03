@@ -1,22 +1,3 @@
-<?php
-  $include_css = $include_js = $content = $talentList = '';
-
-  $con = new mysqli('localhost','root','root','agencydb');
-
-  $query = "SELECT * FROM talent";
-  $result = $con->query($query);
-  while ($r = $result->fetch_assoc()) {
-      $talentList .= '
-        <tr>
-          <td>'.$r['id'].'</td>
-          <td>'.$r['name'].'</td>
-          <td>'.$r['gender'].'</td>
-          <td>'.$r['email'].'</td>
-          <td>'.$r['address'].'</td>
-          <td>'.$r['height'].'</td>
-        </tr>';
-  }
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,7 +10,6 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <?php echo $include_css; ?>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,7 +19,6 @@
     <![endif]-->
   </head>
   <body>
-    <?php echo $content; ?>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -54,17 +33,18 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php"> <i class="fa fa-code"></i> &nbsp; Development</a></li>
-            <li><a href="profile.php"><i class="fa fa-paint-brush"></i> &nbsp; Web Design</a></li>
+            <li class="active"><a href="index.html"> <i class="fa fa-code"></i> &nbsp; Development</a></li>
+            <li><a href="profile.html"><i class="fa fa-paint-brush"></i> &nbsp; Web Design</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
+
     <div class="container">
       <div class="row">
-        <div class="col-xs-2"></div>
-        <div class="col-xs-8">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6">
 
             <fieldset>
               <legend>Instructions</legend>
@@ -85,7 +65,7 @@
                   <u>NOTES:</u> Save 10 registers
                 </li>
                 <li>
-                  <b>Front-End</b>: Show new fields in <a href="list.php">Talents List interface</a>. 
+                  <b>Front-End</b>: Show new fields in <a href="list.html">Talents List interface</a>. 
                   <br>
                   <u>NOTES:</u> Order rows by Talent Name
                 </li>
@@ -98,24 +78,28 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                   <h4>
-                      Talents List
-                      <a href="index.php" class="pull-right">Form</a> 
+                      Talent Register Sheet
+                      <a href="list.html" class="pull-right">List</a> 
                   </h4>
               </div>
               <div class="panel-body">
-                  <table class="table table-striped table-hover ">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php 
-                        echo $talentList;
-                      ?>
-                    </tbody>
-                  </table>
+                  <form class="form-horizontal" novalidate onsubmit="saveUser(event,this)">
+
+                      <div class="form-group">
+                        <label for="name" class="col-lg-2 control-label">Name</label>
+                        <div class="col-lg-10">
+                          <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                          <button type="reset" class="btn btn-default">Cancel</button>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+
+                  </form>
               </div>
             </div>
 
@@ -126,6 +110,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <?php echo $include_js; ?>
+    <script src="js/functions.js"></script>
   </body>
 </html>
